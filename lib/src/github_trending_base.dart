@@ -27,7 +27,16 @@ Future<List<TrendingRepository>> getTrendingRepositories() async {
   var items = document.querySelectorAll('.repo-list>li');
 
   return items.map((item) {
+    String primaryLanguageName;
+    String primaryLanguageColor;
     var colorNode = item.querySelector('.repo-language-color');
+
+    if (colorNode != null) {
+      primaryLanguageName = colorNode.nextElementSibling?.innerHtml?.trim();
+      primaryLanguageColor = RegExp(r'(#\w{6})')
+          .firstMatch(colorNode.attributes['style'])
+          .group(0);
+    }
 
     var starCountStr = item.children[3]
         .querySelector('.octicon-star')
@@ -64,10 +73,8 @@ Future<List<TrendingRepository>> getTrendingRepositories() async {
           ?.replaceAll(RegExp(r'</g-emoji>'), ''),
       starCount: starCount,
       forkCount: forkCount,
-      primaryLanguageName: colorNode?.nextElementSibling?.innerHtml?.trim(),
-      primaryLanguageColor: RegExp(r'(#\w{6})')
-          .firstMatch(colorNode.attributes['style'])
-          .group(0),
+      primaryLanguageName: primaryLanguageName,
+      primaryLanguageColor: primaryLanguageColor,
     );
   }).toList();
 }
