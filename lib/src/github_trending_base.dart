@@ -1,6 +1,12 @@
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' show parse;
 
+class TrendingRepositorySince {
+  static const daily = 'daily';
+  static const weekly = 'weekly';
+  static const monthly = 'monthly';
+}
+
 class TrendingRepository {
   String owner;
   String name;
@@ -25,8 +31,19 @@ class TrendingRepositoryPrimaryLanguage {
   TrendingRepositoryPrimaryLanguage({this.name, this.color});
 }
 
-Future<List<TrendingRepository>> getTrendingRepositories() async {
-  var res = await http.get('https://github.com/trending');
+Future<List<TrendingRepository>> getTrendingRepositories({
+  String since,
+  String language,
+}) async {
+  var url = 'https://github.com/trending';
+  if (language != null) {
+    url += '/$language';
+  }
+  if (since != null) {
+    url += '?since=$since';
+  }
+
+  var res = await http.get(url);
   var document = parse(res.body);
   var items = document.querySelectorAll('.repo-list>li');
 

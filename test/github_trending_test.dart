@@ -42,4 +42,17 @@ void main() {
       });
     });
   });
+
+  group('specify language', () {
+    setUp(() async {
+      items = await getTrendingRepositories(language: 'dart');
+    });
+
+    test('correct language', () {
+      items.forEach((item) {
+        expect(item.primaryLanguage, isNotNull);
+        expect(item.primaryLanguage.name, equals('Dart'));
+      });
+    });
+  });
 }
