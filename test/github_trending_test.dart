@@ -2,15 +2,31 @@ import 'package:github_trending/github_trending.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('A group of tests', () {
-    Awesome awesome;
+  List<TrendingRepository> items;
 
-    setUp(() {
-      awesome = Awesome();
+  group('get trending repositories', () {
+    setUp(() async {
+      items = await getTrendingRepositories();
     });
 
-    test('First Test', () {
-      expect(awesome.isAwesome, isTrue);
+    test('has data', () {
+      expect(items, isList);
+    });
+
+    test('owner, name are not null', () {
+      items.forEach((item) {
+        expect(item.owner, isNotNull);
+        expect(item.name, isNotNull);
+      });
+    });
+
+    test('color format', () {
+      items.forEach((item) {
+        if (item.primaryLanguageColor != null) {
+          expect(
+              RegExp(r'(#\w{6})').hasMatch(item.primaryLanguageColor), isTrue);
+        }
+      });
     });
   });
 }
