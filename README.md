@@ -1,22 +1,31 @@
-A library for Dart developers.
+# github_trending
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+A library to get GitHub trending repositories for Dart and Flutter developers.
+
+## Installation
+
+Add `github_trending` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/packages-and-plugins/using-packages)
 
 ## Usage
-
-A simple usage example:
 
 ```dart
 import 'package:github_trending/github_trending.dart';
 
-main() {
-  var awesome = new Awesome();
+main() async {
+  // get trending repositories
+  var repos = await getTrendingRepositories();
+  print(repos[0].owner);
+
+  // specify time period
+  var weeklyRepos = await getTrendingRepositories(since: TrendingRepositorySince.weekly);
+  print(weeklyRepos[0].name);
+
+  // specify language
+  var dartRepos = await getTrendingRepositories(language: 'dart');
+  print(dartRepos[0].primaryLanguage.name);
 }
 ```
 
-## Features and bugs
+## License
 
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+MIT
