@@ -1,5 +1,5 @@
 name: github_trending
-description: A starting point for Dart libraries or applications.
+description: Get GitHub trending repositories
 version: 0.0.1
 homepage: https://github.com/pd4d10/github-trending
 author: Rongjian Zhang <pd4d10@gmail.com>
