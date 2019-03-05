@@ -20,11 +20,12 @@ void main() {
       });
     });
 
-    test('color format', () {
+    test('primary language', () {
       items.forEach((item) {
-        if (item.primaryLanguageColor != null) {
+        if (item.primaryLanguage != null) {
+          expect(item.primaryLanguage.name, isNotNull);
           expect(
-              RegExp(r'(#\w{6})').hasMatch(item.primaryLanguageColor), isTrue);
+              RegExp(r'(#\w{6})').hasMatch(item.primaryLanguage.color), isTrue);
         }
       });
     });

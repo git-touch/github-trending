@@ -7,8 +7,7 @@ class TrendingRepository {
   String description;
   int starCount;
   int forkCount;
-  String primaryLanguageName;
-  String primaryLanguageColor;
+  TrendingRepositoryPrimaryLanguage primaryLanguage;
 
   TrendingRepository({
     this.owner,
@@ -16,9 +15,14 @@ class TrendingRepository {
     this.description,
     this.starCount,
     this.forkCount,
-    this.primaryLanguageName,
-    this.primaryLanguageColor,
+    this.primaryLanguage,
   });
+}
+
+class TrendingRepositoryPrimaryLanguage {
+  String name;
+  String color;
+  TrendingRepositoryPrimaryLanguage({this.name, this.color});
 }
 
 Future<List<TrendingRepository>> getTrendingRepositories() async {
@@ -27,15 +31,15 @@ Future<List<TrendingRepository>> getTrendingRepositories() async {
   var items = document.querySelectorAll('.repo-list>li');
 
   return items.map((item) {
-    String primaryLanguageName;
-    String primaryLanguageColor;
+    TrendingRepositoryPrimaryLanguage primaryLanguage;
     var colorNode = item.querySelector('.repo-language-color');
 
     if (colorNode != null) {
-      primaryLanguageName = colorNode.nextElementSibling?.innerHtml?.trim();
-      primaryLanguageColor = RegExp(r'(#\w{6})')
-          .firstMatch(colorNode.attributes['style'])
-          .group(0);
+      primaryLanguage = TrendingRepositoryPrimaryLanguage(
+          name: colorNode.nextElementSibling?.innerHtml?.trim(),
+          color: RegExp(r'(#\w{6})')
+              .firstMatch(colorNode.attributes['style'])
+              .group(0));
     }
 
     var starCountStr = item.children[3]
@@ -73,8 +77,7 @@ Future<List<TrendingRepository>> getTrendingRepositories() async {
           ?.replaceAll(RegExp(r'</g-emoji>'), ''),
       starCount: starCount,
       forkCount: forkCount,
-      primaryLanguageName: primaryLanguageName,
-      primaryLanguageColor: primaryLanguageColor,
+      primaryLanguage: primaryLanguage,
     );
   }).toList();
 }
