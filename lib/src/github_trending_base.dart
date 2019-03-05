@@ -47,7 +47,9 @@ Future<List<TrendingRepository>> getTrendingRepositories() async {
         ?.parent
         ?.innerHtml
         ?.replaceFirst(RegExp(r'^[\s\S]*svg>'), '')
+        ?.replaceAll(',', '')
         ?.trim();
+
     var starCount = starCountStr == null ? null : int.tryParse(starCountStr);
 
     var forkCountStr = item
@@ -55,6 +57,7 @@ Future<List<TrendingRepository>> getTrendingRepositories() async {
         ?.parent
         ?.innerHtml
         ?.replaceFirst(RegExp(r'^[\s\S]*svg>'), '')
+        ?.replaceAll(',', '')
         ?.trim();
     var forkCount = forkCountStr == null ? null : int.tryParse(forkCountStr);
 

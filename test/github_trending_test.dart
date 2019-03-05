@@ -20,10 +20,22 @@ void main() {
       });
     });
 
+    test('star and fork count', () {
+      // make sure at least one item has star or fork
+      // to ensure no parse error
+      var itemHasStar = items.where((item) => item.starCount != null);
+      expect(itemHasStar, isNotEmpty);
+
+      var itemHasFork = items.where((item) => item.forkCount != null);
+      expect(itemHasFork, isNotEmpty);
+    });
+
     test('primary language', () {
       items.forEach((item) {
         if (item.primaryLanguage != null) {
           expect(item.primaryLanguage.name, isNotNull);
+
+          // CSS color format
           expect(
               RegExp(r'(#\w{6})').hasMatch(item.primaryLanguage.color), isTrue);
         }
