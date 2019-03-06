@@ -11,6 +11,7 @@ class TrendingRepository {
   String owner;
   String name;
   String description;
+  String descriptionHTML;
   int starCount;
   int forkCount;
   TrendingRepositoryPrimaryLanguage primaryLanguage;
@@ -19,6 +20,7 @@ class TrendingRepository {
     this.owner,
     this.name,
     this.description,
+    this.descriptionHTML,
     this.starCount,
     this.forkCount,
     this.primaryLanguage,
@@ -78,6 +80,19 @@ Future<List<TrendingRepository>> getTrendingRepositories({
         ?.trim();
     var forkCount = forkCountStr == null ? null : int.tryParse(forkCountStr);
 
+    String description;
+    String descriptionHTML;
+    var descriptionRawHtml =
+        item.children[2].querySelector('p')?.innerHtml?.trim();
+    if (descriptionRawHtml != null) {
+      description = descriptionRawHtml
+          ?.replaceAll(RegExp(r'<g-emoji.*?>'), '')
+          ?.replaceAll(RegExp(r'</g-emoji>'), '')
+          ?.replaceAll(RegExp(r'<a.*?>'), '')
+          ?.replaceAll(RegExp(r'</a>'), '');
+      descriptionHTML = '<div>$descriptionRawHtml</div>';
+    }
+
     return TrendingRepository(
       owner: item
           .querySelector('h3>a>span')
@@ -89,12 +104,8 @@ Future<List<TrendingRepository>> getTrendingRepositories({
           ?.innerHtml
           ?.replaceFirst(RegExp(r'^[\s\S]*span>'), '')
           ?.trim(),
-      description: item.children[2]
-          .querySelector('p')
-          ?.innerHtml
-          ?.trim()
-          ?.replaceAll(RegExp(r'<g-emoji.*?>'), '') // TODO: emoji
-          ?.replaceAll(RegExp(r'</g-emoji>'), ''),
+      description: description,
+      descriptionHTML: descriptionHTML,
       starCount: starCount,
       forkCount: forkCount,
       primaryLanguage: primaryLanguage,
