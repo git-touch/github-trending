@@ -36,8 +36,10 @@ void main() {
           expect(item.primaryLanguage.name, isNotNull);
 
           // CSS color format
+          // print(item.primaryLanguage.color);
           expect(
-              RegExp(r'(#\w{6})').hasMatch(item.primaryLanguage.color), isTrue);
+              RegExp(r'#[0-9a-fA-F]{3,6}').hasMatch(item.primaryLanguage.color),
+              isTrue);
         }
       });
     });

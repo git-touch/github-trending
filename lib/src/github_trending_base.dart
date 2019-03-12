@@ -56,9 +56,10 @@ Future<List<TrendingRepository>> getTrendingRepositories({
     if (colorNode != null) {
       primaryLanguage = TrendingRepositoryPrimaryLanguage(
           name: colorNode.nextElementSibling?.innerHtml?.trim(),
-          color: RegExp(r'(#\w{6})')
+          color: RegExp(r'background-color:(.*);')
               .firstMatch(colorNode.attributes['style'])
-              .group(0));
+              ?.group(1)
+              ?.trim());
     }
 
     var starCountStr = item.children[3]
