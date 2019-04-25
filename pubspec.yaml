@@ -1,6 +1,6 @@
 name: github_trending
 description: A library to get GitHub trending repositories, with languages and period options.
-version: 0.1.1
+version: 0.1.2
 homepage: https://github.com/pd4d10/github-trending
 author: Rongjian Zhang <pd4d10@gmail.com>
 
