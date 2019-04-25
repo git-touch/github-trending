@@ -34,9 +34,8 @@ void main() {
       items.forEach((item) {
         if (item.primaryLanguage != null) {
           expect(item.primaryLanguage.name, isNotNull);
-
+          expect(item.primaryLanguage.color, isNotNull);
           // CSS color format
-          // print(item.primaryLanguage.color);
           expect(
               RegExp(r'#[0-9a-fA-F]{3,6}').hasMatch(item.primaryLanguage.color),
               isTrue);
