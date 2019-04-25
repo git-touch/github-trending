@@ -5,7 +5,7 @@ void main() {
   List<TrendingRepository> items;
 
   group('get trending repositories', () {
-    setUp(() async {
+    setUpAll(() async {
       items = await getTrendingRepositories();
     });
 
@@ -46,7 +46,7 @@ void main() {
   });
 
   group('specify language', () {
-    setUp(() async {
+    setUpAll(() async {
       items = await getTrendingRepositories(language: 'dart');
     });
 
