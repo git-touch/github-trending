@@ -3,7 +3,7 @@
 [![build](https://img.shields.io/travis/pd4d10/github-trending.svg)](https://travis-ci.org/pd4d10/github-trending)
 [![pub](https://img.shields.io/pub/v/github_trending.svg)](https://pub.dartlang.org/packages/github_trending)
 
-A library to get GitHub trending repositories for Dart and Flutter developers.
+A Dart library to get GitHub trending repositories and developers via [github-trending-api](https://github.com/huchenme/github-trending-api).
 
 ## Installation
 
@@ -29,6 +29,10 @@ void main() async {
   print(dartRepos[0].languageColor); // #00B4AB
 }
 ```
+
+## Credits
+
+- [github-trending-api](https://github.com/huchenme/github-trending-api)
 
 ## License
 
