@@ -69,7 +69,7 @@ GithubTrendingDeveloper _$GithubTrendingDeveloperFromJson(
     ..avatar = json['avatar'] as String
     ..repo = json['repo'] == null
         ? null
-        : GithubTrendingDeveloper.fromJson(
+        : GithubTrendingDeveloperRepository.fromJson(
             json['repo'] as Map<String, dynamic>);
 }
 

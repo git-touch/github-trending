@@ -37,7 +37,7 @@ class GithubTrendingDeveloper {
   String type;
   String url;
   String avatar;
-  GithubTrendingDeveloper repo;
+  GithubTrendingDeveloperRepository repo;
   GithubTrendingDeveloper();
   factory GithubTrendingDeveloper.fromJson(Map<String, dynamic> json) =>
       _$GithubTrendingDeveloperFromJson(json);

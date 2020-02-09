@@ -44,7 +44,7 @@ Future<List<GithubTrendingDeveloper>> getTrendingDevelopers({
   String since,
   String language,
 }) async {
-  final res = await _getJson(Uri.parse('$_prefix/repositories').replace(
+  final res = await _getJson(Uri.parse('$_prefix/developers').replace(
     queryParameters: {
       if (since != null) 'since': since,
       if (language != null) 'language': language,
