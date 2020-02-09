@@ -2,7 +2,7 @@ import 'package:github_trending/github_trending.dart';
 import 'package:test/test.dart';
 
 void main() {
-  List<TrendingRepository> items;
+  List<GithubTrendingRepository> items;
 
   group('get trending repositories', () {
     setUpAll(() async {
@@ -15,7 +15,7 @@ void main() {
 
     test('owner, name are not null', () {
       items.forEach((item) {
-        expect(item.owner, isNotNull);
+        expect(item.author, isNotNull);
         expect(item.name, isNotNull);
       });
     });
@@ -23,36 +23,21 @@ void main() {
     test('star and fork count', () {
       // make sure at least one item has star or fork
       // to ensure no parse error
-      var itemHasStar = items.where((item) => item.starCount != null);
+      var itemHasStar = items.where((item) => item.stars != null);
       expect(itemHasStar, isNotEmpty);
 
-      var itemHasFork = items.where((item) => item.forkCount != null);
+      var itemHasFork = items.where((item) => item.forks != null);
       expect(itemHasFork, isNotEmpty);
     });
 
-    test('primary language', () {
+    test('language color', () {
       items.forEach((item) {
-        if (item.primaryLanguage != null) {
-          expect(item.primaryLanguage.name, isNotNull);
-          expect(item.primaryLanguage.color, isNotNull);
-          // CSS color format
+        if (item.languageColor != null) {
           expect(
-              RegExp(r'#[0-9a-fA-F]{3,6}').hasMatch(item.primaryLanguage.color),
-              isTrue);
+            RegExp(r'#[0-9a-fA-F]{3,6}').hasMatch(item.languageColor),
+            isTrue,
+          );
         }
-      });
-    });
-  });
-
-  group('specify language', () {
-    setUpAll(() async {
-      items = await getTrendingRepositories(language: 'dart');
-    });
-
-    test('correct language', () {
-      items.forEach((item) {
-        expect(item.primaryLanguage, isNotNull);
-        expect(item.primaryLanguage.name, equals('Dart'));
       });
     });
   });

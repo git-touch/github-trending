@@ -14,20 +14,19 @@ Add `github_trending` as a [dependency in your pubspec.yaml file](https://flutte
 ```dart
 import 'package:github_trending/github_trending.dart';
 
-main() async {
+void main() async {
   // get trending repositories
   var repos = await getTrendingRepositories();
-  print(repos[0].owner);
+  print(repos[0].name);
 
   // specify time period
-  var weeklyRepos =
-      await getTrendingRepositories(since: TrendingRepositorySince.weekly);
+  var weeklyRepos = await getTrendingRepositories(since: 'weekly');
   print(weeklyRepos[0].name);
 
   // specify language
   var dartRepos = await getTrendingRepositories(language: 'dart');
-  print(dartRepos[0].primaryLanguage.name); // Dart
-  print(dartRepos[0].primaryLanguage.color); // #00B4AB
+  print(dartRepos[0].language); // Dart
+  print(dartRepos[0].languageColor); // #00B4AB
 }
 ```
 
