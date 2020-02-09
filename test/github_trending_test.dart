@@ -2,9 +2,9 @@ import 'package:github_trending/github_trending.dart';
 import 'package:test/test.dart';
 
 void main() {
-  List<GithubTrendingRepository> items;
+  group('repositories', () {
+    List<GithubTrendingRepository> items;
 
-  group('get trending repositories', () {
     setUpAll(() async {
       items = await getTrendingRepositories();
     });
@@ -39,6 +39,18 @@ void main() {
           );
         }
       });
+    });
+  });
+
+  group('developers', () {
+    List<GithubTrendingDeveloper> items;
+
+    setUpAll(() async {
+      items = await getTrendingDevelopers();
+    });
+
+    test('has data', () {
+      expect(items, isList);
     });
   });
 }

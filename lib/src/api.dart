@@ -15,6 +15,9 @@ class TrendingRepositoryPrimaryLanguage {
   TrendingRepositoryPrimaryLanguage({this.name, this.color});
 }
 
+/// Get trending repositories
+///
+/// https://github.com/huchenme/github-trending-api#trending-repositories
 Future<List<GithubTrendingRepository>> getTrendingRepositories({
   /// daily, weekly, monthly
   String since,
@@ -33,6 +36,9 @@ Future<List<GithubTrendingRepository>> getTrendingRepositories({
       .toList();
 }
 
+/// Get trending developers
+///
+/// https://github.com/huchenme/github-trending-api#trending-developers
 Future<List<GithubTrendingDeveloper>> getTrendingDevelopers({
   /// daily, weekly, monthly
   String since,
