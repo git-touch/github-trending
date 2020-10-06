@@ -1,3 +1,8 @@
+## 0.3.0
+
+- Update default prefix
+- Support prefix customization
+
 ## 0.2.0
 
 - Use [github-trending-api](https://github.com/huchenme/github-trending-api)
