@@ -1,12 +1,15 @@
 import 'package:github_trending/github_trending.dart';
 import 'package:test/test.dart';
 
+// https://github.com/huchenme/github-trending-api/issues/130#issuecomment-703483762
+final trending = GithubTrending(prefix: 'https://gtrend.yapie.me');
+
 void main() {
   group('repositories', () {
     List<GithubTrendingRepository> items;
 
     setUpAll(() async {
-      items = await getTrendingRepositories();
+      items = await trending.getTrendingRepositories();
     });
 
     test('has data', () {
@@ -46,7 +49,7 @@ void main() {
     List<GithubTrendingDeveloper> items;
 
     setUpAll(() async {
-      items = await getTrendingDevelopers();
+      items = await trending.getTrendingDevelopers();
     });
 
     test('has data', () {
