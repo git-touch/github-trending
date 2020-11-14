@@ -15,7 +15,7 @@ Add `github_trending` as a [dependency in your pubspec.yaml file](https://flutte
 import 'package:github_trending/github_trending.dart';
 
 void main() async {
-  final trending = GithubTrending();
+  final trending = GithubTrending(prefix: 'https://gtrend.yapie.me');
 
   // get trending repositories
   var repos = await trending.getTrendingRepositories();
