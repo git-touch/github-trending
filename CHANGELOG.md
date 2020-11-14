@@ -1,3 +1,7 @@
+## 1.0.0
+
+- Decode with UTF-8
+
 ## 0.3.0
 
 - Update default prefix

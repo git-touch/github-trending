@@ -1,8 +1,7 @@
 name: github_trending
 description: A library to get GitHub trending repositories and developers, with languages and period options.
-version: 0.3.0
+version: 1.0.0
 homepage: https://github.com/git-touch/github-trending
-author: Rongjian Zhang <pd4d10@gmail.com>
 
 environment:
   sdk: ">=2.5.0 <3.0.0"
