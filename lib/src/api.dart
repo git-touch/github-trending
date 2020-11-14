@@ -15,7 +15,7 @@ class GithubTrending {
 
   Future _getJson(Uri url) async {
     final res = await http.get(url);
-    return json.decode(res.body);
+    return json.decode(utf8.decode(res.bodyBytes));
   }
 
   /// Get trending repositories
