@@ -3,8 +3,8 @@ import 'package:github_trending/src/model.dart';
 import 'package:http/http.dart' as http;
 
 class TrendingRepositoryPrimaryLanguage {
-  String name;
-  String color;
+  String? name;
+  String? color;
   TrendingRepositoryPrimaryLanguage({this.name, this.color});
 }
 
@@ -23,9 +23,9 @@ class GithubTrending {
   /// https://github.com/huchenme/github-trending-api#trending-repositories
   Future<List<GithubTrendingRepository>> getTrendingRepositories({
     /// daily, weekly, monthly
-    String since,
-    String language,
-    String spokenLanguageCode,
+    String? since,
+    String? language,
+    String? spokenLanguageCode,
   }) async {
     final res = await _getJson(Uri.parse('$prefix/repositories').replace(
       queryParameters: {
@@ -45,8 +45,8 @@ class GithubTrending {
   /// https://github.com/huchenme/github-trending-api#trending-developers
   Future<List<GithubTrendingDeveloper>> getTrendingDevelopers({
     /// daily, weekly, monthly
-    String since,
-    String language,
+    String? since,
+    String? language,
   }) async {
     final res = await _getJson(Uri.parse('$prefix/developers').replace(
       queryParameters: {

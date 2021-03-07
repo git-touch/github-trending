@@ -6,7 +6,7 @@ final trending = GithubTrending(prefix: 'https://gtrend.yapie.me');
 
 void main() {
   group('repositories', () {
-    List<GithubTrendingRepository> items;
+    List<GithubTrendingRepository>? items;
 
     setUpAll(() async {
       items = await trending.getTrendingRepositories();
@@ -17,7 +17,7 @@ void main() {
     });
 
     test('owner, name are not null', () {
-      items.forEach((item) {
+      items!.forEach((item) {
         expect(item.author, isNotNull);
         expect(item.name, isNotNull);
       });
@@ -26,18 +26,18 @@ void main() {
     test('star and fork count', () {
       // make sure at least one item has star or fork
       // to ensure no parse error
-      var itemHasStar = items.where((item) => item.stars != null);
+      var itemHasStar = items!.where((item) => item.stars != null);
       expect(itemHasStar, isNotEmpty);
 
-      var itemHasFork = items.where((item) => item.forks != null);
+      var itemHasFork = items!.where((item) => item.forks != null);
       expect(itemHasFork, isNotEmpty);
     });
 
     test('language color', () {
-      items.forEach((item) {
+      items!.forEach((item) {
         if (item.languageColor != null) {
           expect(
-            RegExp(r'#[0-9a-fA-F]{3,6}').hasMatch(item.languageColor),
+            RegExp(r'#[0-9a-fA-F]{3,6}').hasMatch(item.languageColor!),
             isTrue,
           );
         }
@@ -46,7 +46,7 @@ void main() {
   });
 
   group('developers', () {
-    List<GithubTrendingDeveloper> items;
+    List<GithubTrendingDeveloper>? items;
 
     setUpAll(() async {
       items = await trending.getTrendingDevelopers();
