@@ -1,3 +1,5 @@
+[DEPRECATED] Codebase moved to [GitTouch](https://github.com/git-touch/git-touch/tree/main/packages/github_trending)
+
 # github_trending
 
 [![pub](https://img.shields.io/pub/v/github_trending.svg)](https://pub.dev/packages/github_trending)
